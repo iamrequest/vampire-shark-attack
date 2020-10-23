@@ -56,12 +56,12 @@ public class SwimmingLocomotionHand : MonoBehaviour {
 
             // Multiply this by our animation curve, to get a proper multiplier scaled to our needs
             // Clamp the speed multiplication between [-1 and 1], so we get a scaled/uniform output. Likely not needed, but just in case
-            handVelocityLikeness = Mathf.Clamp(swimmingLocomotion.handLikenessVelocityMultiplier.Evaluate(handVelocityLikeness), -1, 1);
+            handVelocityLikeness = Mathf.Clamp(swimmingLocomotion.locomotionSettings.handLikenessVelocityMultiplier.Evaluate(handVelocityLikeness), -1, 1);
 
             // Invert our motion, since we want to propel the player away from the hand's motion
             return -(swimmingLocomotion.transform.rotation * skeletonAction.velocity)
                 * handVelocityLikeness
-                * swimmingLocomotion.baseSpeedMultiplier;
+                * swimmingLocomotion.locomotionSettings.baseSpeedMultiplier;
         } else {
             // Closed fist. Do not move the player
             return Vector3.zero;

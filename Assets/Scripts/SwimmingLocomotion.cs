@@ -11,14 +11,10 @@ public class SwimmingLocomotion : MonoBehaviour {
     private CharacterController characterController;
     public List<SwimmingLocomotionHand> swimmingLocomotionHands;
 
-    [Header("Locomotion Speed Settings")]
     private Vector3 motion;
-    public float dampeningPerFrame;
-    public float baseSpeedMultiplier;
-
-    [Tooltip("How much extra force is applied to the hand's motion, as the palm's normal vector approaches parallel with the hand's motion vector ")]
-    public AnimationCurve handLikenessVelocityMultiplier;
-
+    [Tooltip("The active settings")]
+    public SwimmingLocomotionSettings locomotionSettings;
+    public SwimmingLocomotionSettings locomotionSettingsMild, locomotionSettingsRealistic;
 
     void Awake() {
         characterController = GetComponent<CharacterController>();
@@ -42,6 +38,6 @@ public class SwimmingLocomotion : MonoBehaviour {
 
     // TODO: Snap to zero if magnitude is very small?
     private void ApplyMotionFalloff() {
-        motion *= dampeningPerFrame;
+        motion *= locomotionSettings.dampeningPerFrame;
     }
 }
