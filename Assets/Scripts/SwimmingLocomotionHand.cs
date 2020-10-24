@@ -22,7 +22,15 @@ public class SwimmingLocomotionHand : MonoBehaviour {
     [Tooltip("Used to calculate motion of the hand each frame")]
     public SteamVR_Action_Skeleton skeletonAction;
 
-    public bool isLocomotionActive;
+    public bool isLocomotionActive {
+        get {
+            return isGripOpen && !isHoldingInteractable;
+        }
+    }
+
+    public bool isGripOpen;
+    public bool isHoldingInteractable;
+    public float timeSinceLastObjectRelease;
 
     // Start is called before the first frame update
     void Awake() {
@@ -31,16 +39,42 @@ public class SwimmingLocomotionHand : MonoBehaviour {
 
     private void Start() {
         gripAction.AddOnChangeListener(SetIsLocomotionActive, hand.handType);
-        isLocomotionActive = true;
+        isGripOpen = true;
+        isHoldingInteractable = true;
     }
 
     private void SetIsLocomotionActive(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
-        isLocomotionActive = !newState;
+        // If we just started a grip, check if we're holding an object
+        if (newState) {
+            isHoldingInteractable = (hand.currentAttachedObject != null);
+        } else {
+            // Check if we just released an object. If so, we need to wait a bit before producing motion
+            if (isHoldingInteractable) {
+                timeSinceLastObjectRelease = 0f;
+                return;
+            }
+        }
+
+        isGripOpen = !newState;
     }
 
     private void Update() {
         Debug.DrawRay(transform.position, transform.forward);
         Debug.DrawRay(transform.position, swimmingLocomotion.transform.rotation * skeletonAction.velocity, Color.cyan);
+
+        // If we just released an object
+        //if (isHoldingInteractable && hand.currentAttachedObject == null) {
+        //    timeSinceLastObjectRelease += Time.deltaTime;
+
+        //}
+        //timeSinceLastObjectRelease += Time.deltaTime;
+
+        //// TODO: This section is breaking things, since timeSinceLastObjectRelease is greater than the threshold. Not being reset
+        //// If we've waited long enough, clear the "isHoldingObject" flag.
+        //// This will let the player move with this hand again
+        //if (timeSinceLastObjectRelease > swimmingLocomotion.postObjectReleaseLocomotionDelay) {
+        //    isHoldingInteractable = false;
+        //}
     }
 
     /// <summary>

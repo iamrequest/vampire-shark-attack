@@ -16,6 +16,9 @@ public class SwimmingLocomotion : MonoBehaviour {
     public SwimmingLocomotionSettings locomotionSettings;
     public SwimmingLocomotionSettings locomotionSettingsMild, locomotionSettingsRealistic;
 
+    [Tooltip("How many seconds the hand has to wait after releasing an object to be able to move the player again")]
+    public float postObjectReleaseLocomotionDelay;
+
     void Awake() {
         characterController = GetComponent<CharacterController>();
 
