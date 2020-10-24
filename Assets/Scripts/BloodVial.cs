@@ -14,11 +14,15 @@ public class BloodVial : MonoBehaviour {
     [Tooltip("Invoked when the vial collides and breaks")]
     public UnityEvent onVialBreak;
 
+    [Tooltip("Invoked after the bottle collides, and $lifespan seconds have elapsed")]
+    public UnityEvent onVialDissipate;
+
     private bool isBroken;
 
     public float breakVelocity;
     public float alertRadius;
     public float lifetime;
+    public float vfxLifetime;
     [Tooltip("Extra seconds appended to the lifetime amount, to avoid nullreference exceptions in downstream scripts while we destroy this")]
     public float lifetimeDestroyBuffer;
     public LayerMask enemyLayerMask;
@@ -35,6 +39,8 @@ public class BloodVial : MonoBehaviour {
 
                 m_renderer.enabled = false;
                 onVialBreak.Invoke();
+                StartCoroutine(InvokeOnVialDissipateAfterDelay());
+
                 AlertNearbySharks();
                 Destroy(gameObject, lifetime + lifetimeDestroyBuffer);
             }
@@ -72,5 +78,10 @@ public class BloodVial : MonoBehaviour {
         foreach (Shark s in sharks) {
             s.EnterDistractedState(this);
         }
+    }
+
+    private IEnumerator InvokeOnVialDissipateAfterDelay() {
+        yield return new WaitForSeconds(vfxLifetime);
+        onVialDissipate.Invoke();
     }
 }
