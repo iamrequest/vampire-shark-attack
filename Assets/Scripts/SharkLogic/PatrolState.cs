@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// Simple lerp towards target for a shark
@@ -10,6 +11,9 @@ using UnityEngine;
 public class PatrolState : BaseState {
     public Transform sharkTransform;
     public Rigidbody sharkRigidbody;
+    public AgentVision vision;
+
+    public BaseState chaseState;
 
     public Transform currentTravelPoint;
     public List<Transform> travelPoints;
@@ -31,7 +35,11 @@ public class PatrolState : BaseState {
     }
 
     private void FixedUpdate() {
-        // TODO: Check for player
+        // Check for player
+        if(vision.IsInSight(Player.instance.transform.position, "Player")) {
+            // 
+            //chaseState
+        }
 
         if (travelPoints.Count > 0) {
             // Check if we've arrived
