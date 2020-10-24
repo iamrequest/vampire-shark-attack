@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Valve.VR.InteractionSystem;
 
 /// <summary>
@@ -9,9 +10,8 @@ using Valve.VR.InteractionSystem;
 /// Therefore, we're using a simple lerp for patroling.
 /// </summary>
 public class PatrolState : BaseState {
-    public Transform sharkTransform;
-    public Rigidbody sharkRigidbody;
-    public AgentVision vision;
+    public UnityEvent onPlayerSpotted;
+    public Shark shark;
 
     public BaseState chaseState;
 
@@ -19,15 +19,12 @@ public class PatrolState : BaseState {
     public List<Transform> travelPoints;
     private int travelPointIndex;
 
-    [Tooltip("The squared distance between the agent and the target, must be passed before the agent can stop at this waypoint")]
-    public float sqrStopDistance;
-    public float sqrSlowDistance;
-    public float rotationSpeed;
-    public float regularSpeed, slowSpeed;
+    public SharkMotorSettings motorSettings;
 
     public override void OnStateEnter(BaseState previousState) {
         base.OnStateEnter(previousState);
 
+        // TODO: Likely would be best to pick the closest travel point when returning from some state (ie: previous state != null)
         currentTravelPoint = travelPoints[travelPointIndex];
     }
     public override void OnStateExit(BaseState nextState) {
@@ -36,34 +33,31 @@ public class PatrolState : BaseState {
 
     private void FixedUpdate() {
         // Check for player
-        if(vision.IsInSight(Player.instance.transform.position, "Player")) {
-            // 
-            //chaseState
+        if(shark.vision.IsInSight(Player.instance.transform.position, "Player")) {
+            onPlayerSpotted.Invoke();
+            //parentFSM.TransitionTo(chaseState);
         }
 
-        if (travelPoints.Count > 0) {
-            // Check if we've arrived
-            if (GetSqrDistanceToCurrentWaypoint() < sqrStopDistance) {
+        // If 0 patrol points are specified, this is essentially just an idle state. Likely would look weird with just 0
+        if (travelPoints.Count > 1) {
+            // Check if we've arrived at the current waypoint. If so, move on to the next one
+            if (GetSqrDistanceToCurrentWaypoint() < motorSettings.sqrStopDistance) {
                 travelPointIndex = (travelPointIndex + 1) % travelPoints.Count;
                 currentTravelPoint = travelPoints[travelPointIndex];
             }
+        }
 
+        // Lerp to the current travel point
+        if (travelPoints.Count > 0) {
             // Lerp rotation towards target
-            Vector3 dirToTarget = (currentTravelPoint.position - sharkTransform.position);
-            sharkRigidbody.MoveRotation(Quaternion.Lerp(sharkTransform.rotation, 
+            Vector3 dirToTarget = (currentTravelPoint.position - shark.transform.position);
+            shark.rb.MoveRotation(Quaternion.Lerp(shark.transform.rotation, 
                 Quaternion.LookRotation(dirToTarget),
-                rotationSpeed * Time.deltaTime));
-
-            // Determine if we're close enough to the point to slow down
-            float speed;
-            if (GetSqrDistanceToCurrentWaypoint() < sqrSlowDistance) {
-                speed = slowSpeed;
-            } else {
-                speed = regularSpeed;
-            }
+                motorSettings.rotationSpeed * Time.deltaTime));
 
             // Lerp forward 
-            sharkRigidbody.MovePosition(sharkTransform.position + (sharkTransform.forward * speed));
+            float forwardSpeed = motorSettings.GetMotorSpeed(GetSqrDistanceToCurrentWaypoint());
+            shark.rb.MovePosition(shark.transform.position + (shark.transform.forward * forwardSpeed));
         }
     }
 
@@ -73,6 +67,6 @@ public class PatrolState : BaseState {
             return 0f;
         }
 
-        return (currentTravelPoint.position - sharkTransform.position).sqrMagnitude;
+        return (currentTravelPoint.position - shark.transform.position).sqrMagnitude;
     }
 }

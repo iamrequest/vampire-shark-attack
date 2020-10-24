@@ -34,16 +34,6 @@ public class Key : MonoBehaviour {
         }
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            UnlockTarget();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R)) {
-            m_collider.enabled = true;
-        }
-    }
-
     public void UnlockTarget() {
         isUnlocking = true;
         // Detach the object from the hand, and disable the collider component to prevent the player from grabbing it again
