@@ -49,7 +49,7 @@ public class PatrolState : BaseState {
             }
 
             // Lerp rotation towards target
-            Vector3 dirToTarget = (currentTravelPoint.position - transform.position);
+            Vector3 dirToTarget = (currentTravelPoint.position - sharkTransform.position);
             sharkRigidbody.MoveRotation(Quaternion.Lerp(sharkTransform.rotation, 
                 Quaternion.LookRotation(dirToTarget),
                 rotationSpeed * Time.deltaTime));
@@ -73,6 +73,6 @@ public class PatrolState : BaseState {
             return 0f;
         }
 
-        return (currentTravelPoint.position - transform.position).sqrMagnitude;
+        return (currentTravelPoint.position - sharkTransform.position).sqrMagnitude;
     }
 }
