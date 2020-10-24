@@ -48,6 +48,11 @@ public class SwimmingLocomotionHand : MonoBehaviour {
     /// </summary>
     /// <returns>A Vector3 representing how much this hand is propelling the player</returns>
     public Vector3 CalculateMotion() {
+        // This prevents a bug that sends the player flying, when the controllers aren't connected
+        if (!skeletonAction.deviceIsConnected) {
+            return Vector3.zero;
+        }
+
         if (isLocomotionActive) {
             // -- Open hand. Move the player with this hand
             // Determine if the hand is moving in the same dir as the palm's dir
