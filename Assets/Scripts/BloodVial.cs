@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// A glass bottle that breaks on collision, alerting nearby sharks. Nearby sharks will enter the Distracted state, chasing after the bottle.
+/// 
+/// TODO: Currently this only alerts sharks at the moment the bottle breaks. It should also alert sharks while it's broken and leaking blood
+/// </summary>
 public class BloodVial : MonoBehaviour {
+    private Renderer m_renderer;
+
     [Tooltip("Invoked when the vial collides and breaks")]
     public UnityEvent onVialBreak;
+
+    private bool isBroken;
 
     public float breakVelocity;
     public float alertRadius;
@@ -14,11 +23,21 @@ public class BloodVial : MonoBehaviour {
     public float lifetimeDestroyBuffer;
     public LayerMask enemyLayerMask;
 
+    private void Start() {
+        m_renderer = GetComponent<Renderer>();
+    }
+
     private void OnCollisionEnter(Collision collision) {
-        if (collision.relativeVelocity.magnitude > breakVelocity) {
-            onVialBreak.Invoke();
-            AlertNearbySharks();
-            Destroy(gameObject, lifetime + lifetimeDestroyBuffer);
+        // Can only break once
+        if (!isBroken) {
+            if (collision.relativeVelocity.magnitude > breakVelocity) {
+                isBroken = true;
+
+                m_renderer.enabled = false;
+                onVialBreak.Invoke();
+                AlertNearbySharks();
+                Destroy(gameObject, lifetime + lifetimeDestroyBuffer);
+            }
         }
     }
 
