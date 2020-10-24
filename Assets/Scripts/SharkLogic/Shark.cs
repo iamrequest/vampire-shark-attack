@@ -6,8 +6,14 @@ using UnityEngine;
 /// Stores common references to components used by states
 /// </summary>
 public class Shark : MonoBehaviour {
-    private FiniteStateMachine fsm;
     public DistractedState distractedState;
+
+    private FiniteStateMachine m_fsm;
+    public FiniteStateMachine fsm {
+        get {
+            return m_fsm;
+        }
+    }
 
     private Rigidbody m_rb;
     public Rigidbody rb {
@@ -24,14 +30,14 @@ public class Shark : MonoBehaviour {
     }
 
     private void Start() {
-        fsm = GetComponent<FiniteStateMachine>();
+        m_fsm = GetComponent<FiniteStateMachine>();
         m_rb = GetComponent<Rigidbody>();
         m_vision = GetComponent<AgentVision>();
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            fsm.TransitionTo(distractedState);
-        }
+
+    public void EnterDistractedState(BloodVial bloodVial) {
+        distractedState.bloodVial = bloodVial;
+        fsm.TransitionTo(distractedState);
     }
 }

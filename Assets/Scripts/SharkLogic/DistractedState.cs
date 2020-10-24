@@ -7,13 +7,10 @@ using UnityEngine;
 /// </summary>
 public class DistractedState : BaseState {
     public Shark shark;
-    public Transform target;
+    public BloodVial bloodVial;
 
     [Tooltip("The state that the agent will go to next, after the distraction delay has elapsed")]
     public BaseState postDelayState;
-
-    [Tooltip("How long the agent will stay distracted for, in seconds")]
-    public float distractionTime;
 
     public SharkMotorSettings motorSettings;
 
@@ -29,7 +26,7 @@ public class DistractedState : BaseState {
 
     private void FixedUpdate() {
         // Rotate to face the target
-        Vector3 dirToTarget = (target.position - shark.transform.position);
+        Vector3 dirToTarget = (bloodVial.transform.position - shark.transform.position);
         shark.rb.MoveRotation(Quaternion.Lerp(shark.transform.rotation, 
             Quaternion.LookRotation(dirToTarget),
             motorSettings.rotationSpeed * Time.deltaTime));
@@ -42,11 +39,11 @@ public class DistractedState : BaseState {
     }
 
     public IEnumerator StartStateAfterDelay() {
-        yield return new WaitForSeconds(distractionTime);
+        yield return new WaitForSeconds(bloodVial.lifetime);
         parentFSM.TransitionTo(postDelayState);
     }
 
     private float GetSqrDistanceToCurrentWaypoint() {
-        return (target.position - shark.transform.position).sqrMagnitude;
+        return (bloodVial.transform.position - shark.transform.position).sqrMagnitude;
     }
 }
