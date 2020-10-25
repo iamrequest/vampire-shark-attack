@@ -532,8 +532,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 0.5
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -560,7 +560,7 @@ MonoBehaviour:
   locomotionSettingsRealistic: {fileID: 11400000, guid: 74559367db3c8634bb735f9b4153b222,
     type: 2}
   postObjectReleaseLocomotionDelay: 2
---- !u!114 &531742759
+--- !u!114 &704312815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -569,12 +569,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2226226857358365407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b7669c027fff542aae889966e9bd51, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e94a5aee7a6f2a4ab221dfd71949322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSettingsSaved:
-    m_PersistentCalls:
-      m_Calls: []
+  currentWaypoint: {fileID: 0}
 --- !u!114 &794483631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +750,11 @@ PrefabInstance:
     - target: {fileID: 1000014277073068, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010547881750, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: canTurnEverySeconds
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
