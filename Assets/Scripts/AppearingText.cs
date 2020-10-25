@@ -10,6 +10,7 @@ using UnityEngine.Events;
 public class AppearingText : MonoBehaviour {
     private Animator animator;
     public UnityEvent onTriggerEnter;
+    public bool hideTextAfterwards;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -17,7 +18,13 @@ public class AppearingText : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            animator.SetTrigger("ShowText");
+            if (hideTextAfterwards) {
+                // Used for title sequence
+                animator.SetTrigger("ShowThenHideText");
+            } else {
+                animator.SetTrigger("ShowText");
+            }
+
             onTriggerEnter.Invoke();
         }
     }
