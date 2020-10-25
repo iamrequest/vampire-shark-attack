@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopDistance: 1
   slowDistance: 1
-  regularSpeed: 0.01
-  slowSpeed: 0.01
+  regularSpeed: 0.05
+  slowSpeed: 0.03
   rotationSpeed: 5
