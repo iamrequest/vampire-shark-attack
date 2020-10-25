@@ -54,13 +54,13 @@ public class ChasePlayerState : BaseState {
             motorSettings.rotationSpeed * Time.deltaTime));
 
         // Lerp forward, if we're still sufficiently far enough away from it
-        if (dirToLastSeenPosition.sqrMagnitude > motorSettings.sqrStopDistance) {
+        if (dirToLastSeenPosition.magnitude > motorSettings.stopDistance) {
             float forwardSpeed = motorSettings.GetMotorSpeed(GetSqrDistanceTo(lastSeenPosition));
             shark.rb.MovePosition(shark.transform.position + (shark.transform.forward * forwardSpeed));
         }
 
         // If within stopping range, then do damage to the player
-        if (GetSqrDistanceTo(Player.instance.hmdTransform.position) < motorSettings.sqrStopDistance) {
+        if (GetSqrDistanceTo(Player.instance.hmdTransform.position) < motorSettings.stopDistance) {
             onPlayerKill.Invoke();
 
             // Kill the player
@@ -73,6 +73,6 @@ public class ChasePlayerState : BaseState {
     }
 
     private float GetSqrDistanceTo(Vector3 targetPosition) {
-        return (targetPosition - shark.transform.position).sqrMagnitude;
+        return (targetPosition - shark.transform.position).magnitude;
     }
 }

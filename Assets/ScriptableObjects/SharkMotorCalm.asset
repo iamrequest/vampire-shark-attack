@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f178e36dd5add6048af8cb7054457617, type: 3}
   m_Name: SharkMotorCalm
   m_EditorClassIdentifier: 
-  sqrStopDistance: 1
-  sqrSlowDistance: 2
+  stopDistance: 0.25
+  slowDistance: 1
   regularSpeed: 0.01
   slowSpeed: 0.01
   rotationSpeed: 5

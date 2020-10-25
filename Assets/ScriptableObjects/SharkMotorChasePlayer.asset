@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f178e36dd5add6048af8cb7054457617, type: 3}
   m_Name: SharkMotorChasePlayer
   m_EditorClassIdentifier: 
-  sqrStopDistance: 0.25
-  sqrSlowDistance: 5
+  stopDistance: 0.75
+  slowDistance: 5
   regularSpeed: 0.02
   slowSpeed: 0.0075
   rotationSpeed: 10

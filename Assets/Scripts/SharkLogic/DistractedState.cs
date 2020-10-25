@@ -29,7 +29,7 @@ public class DistractedState : BaseState {
             motorSettings.rotationSpeed * Time.deltaTime));
 
         // Lerp forward, if we're still sufficiently far enough away from it
-        if (dirToTarget.sqrMagnitude > motorSettings.sqrStopDistance) {
+        if (dirToTarget.magnitude > motorSettings.stopDistance) {
             float forwardSpeed = motorSettings.GetMotorSpeed(GetSqrDistanceToBloodVial());
             shark.rb.MovePosition(shark.transform.position + (shark.transform.forward * forwardSpeed));
         }
@@ -41,6 +41,6 @@ public class DistractedState : BaseState {
     }
 
     private float GetSqrDistanceToBloodVial() {
-        return (bloodVial.transform.position - shark.transform.position).sqrMagnitude;
+        return (bloodVial.transform.position - shark.transform.position).magnitude;
     }
 }

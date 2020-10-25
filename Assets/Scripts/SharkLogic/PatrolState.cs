@@ -41,7 +41,7 @@ public class PatrolState : BaseState {
         // If 0 patrol points are specified, this is essentially just an idle state. Likely would look weird with just 0
         if (travelPoints.Count > 1) {
             // Check if we've arrived at the current waypoint. If so, move on to the next one
-            if (GetSqrDistanceToCurrentWaypoint() < motorSettings.sqrStopDistance) {
+            if (GetSqrDistanceToCurrentWaypoint() < motorSettings.stopDistance) {
                 travelPointIndex = (travelPointIndex + 1) % travelPoints.Count;
                 currentTravelPoint = travelPoints[travelPointIndex];
             }
@@ -67,6 +67,6 @@ public class PatrolState : BaseState {
             return 0f;
         }
 
-        return (currentTravelPoint.position - shark.transform.position).sqrMagnitude;
+        return (currentTravelPoint.position - shark.transform.position).magnitude;
     }
 }

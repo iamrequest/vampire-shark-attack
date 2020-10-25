@@ -244,25 +244,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &704312814 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2226226857358365407, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2226226856883386198}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &704312815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704312814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e94a5aee7a6f2a4ab221dfd71949322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWaypoint: {fileID: 0}
 --- !u!1001 &910860628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -546,7 +527,7 @@ GameObject:
   - component: {fileID: 1582672413}
   - component: {fileID: 1582672412}
   - component: {fileID: 1582672411}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1152,18 +1133,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 531742758, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6, type: 3}
-      propertyPath: m_Radius
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 531742758, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6, type: 3}
-      propertyPath: m_Height
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 531742758, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6, type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2226226857357927079, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1223,11 +1192,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2265354523430015075, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6,
-        type: 3}
-      propertyPath: canTurnEverySeconds
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d7ff21ea4eb804ea7b6bf692fd18f6, type: 3}
