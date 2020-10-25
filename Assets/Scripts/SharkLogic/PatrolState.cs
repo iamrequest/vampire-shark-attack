@@ -48,7 +48,7 @@ public class PatrolState : BaseState {
         }
 
         // Lerp to the current travel point
-        if (travelPoints.Count > 0) {
+        if (travelPoints.Count > 0 && GetSqrDistanceToCurrentWaypoint() > motorSettings.stopDistance) {
             // Lerp rotation towards target
             Vector3 dirToTarget = (currentTravelPoint.position - shark.transform.position);
             shark.rb.MoveRotation(Quaternion.Lerp(shark.transform.rotation, 
