@@ -60,6 +60,6 @@ public class AgentVision : MonoBehaviour {
         Quaternion rayRotation = Quaternion.AngleAxis(multiplier * visionRadius, upDir);
         Vector3 rayDirection = rayRotation * transform.forward;
 
-        Gizmos.DrawRay(transform.position, rayDirection * visionDistance);
+        Gizmos.DrawRay(eyeTransform.position, rayDirection * visionDistance);
     }
 }
