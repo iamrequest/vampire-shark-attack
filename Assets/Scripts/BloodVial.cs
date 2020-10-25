@@ -34,6 +34,11 @@ public class BloodVial : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         // Can only break once
         if (!isBroken) {
+            // Don't break when colliding with the player
+            if (collision.collider.CompareTag("Player")) {
+                return;
+            }
+
             if (collision.relativeVelocity.magnitude > breakVelocity) {
                 isBroken = true;
 

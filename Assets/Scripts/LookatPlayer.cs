@@ -10,7 +10,7 @@ public class LookatPlayer : MonoBehaviour {
         if (constraintRotationToYAxis) {
             transform.forward = Vector3.ProjectOnPlane(transform.position - Player.instance.hmdTransform.position, Vector3.up).normalized;
         } else {
-            transform.LookAt(Player.instance.hmdTransform.position);
+            transform.forward = (transform.position - Player.instance.hmdTransform.position).normalized;
         }
     }
 }
