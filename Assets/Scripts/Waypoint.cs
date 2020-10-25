@@ -19,6 +19,7 @@ public class Waypoint : MonoBehaviour {
             } else {
                 // If the existing waypoint has lower priority than this one, then overwrite it
                 if (VRPlayer.instance.currentWaypoint.priority < priority) {
+                    VRPlayer.instance.currentWaypoint = this;
                     onWaypointSet.Invoke();
                 }
             }
