@@ -10,6 +10,7 @@ using UnityEngine.Events;
 /// </summary>
 public class BloodVial : MonoBehaviour {
     private Renderer m_renderer;
+    private Rigidbody m_rb;
 
     [Tooltip("Invoked when the vial collides and breaks")]
     public UnityEvent onVialBreak;
@@ -29,6 +30,7 @@ public class BloodVial : MonoBehaviour {
 
     private void Start() {
         m_renderer = GetComponent<Renderer>();
+        m_rb = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -42,7 +44,13 @@ public class BloodVial : MonoBehaviour {
             if (collision.relativeVelocity.magnitude > breakVelocity) {
                 isBroken = true;
 
+                // Update the vial
                 m_renderer.enabled = false;
+                m_rb.isKinematic = true;
+                transform.up = collision.GetContact(0).normal;
+
+
+
                 onVialBreak.Invoke();
                 StartCoroutine(InvokeOnVialDissipateAfterDelay());
 
