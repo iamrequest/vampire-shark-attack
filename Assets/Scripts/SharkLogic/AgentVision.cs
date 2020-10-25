@@ -46,4 +46,20 @@ public class AgentVision : MonoBehaviour {
             Debug.DrawRay(eyeTransform.position, (target - eyeTransform.position).normalized * drawDistance, color);
         }
     }
+
+    private void OnDrawGizmosSelected() {
+        // Draw a rough cone of vision
+        // https://answers.unity.com/questions/21176/gizmo-question-how-do-i-create-a-field-of-view-usi.html
+        DrawViewingFrustrum(Vector3.up, 1);
+        DrawViewingFrustrum(Vector3.up, -1);
+        DrawViewingFrustrum(Vector3.right, 1);
+        DrawViewingFrustrum(Vector3.right, -1);
+    }
+
+    private void DrawViewingFrustrum(Vector3 upDir, float multiplier) {
+        Quaternion rayRotation = Quaternion.AngleAxis(multiplier * visionRadius, upDir);
+        Vector3 rayDirection = rayRotation * transform.forward;
+
+        Gizmos.DrawRay(transform.position, rayDirection * visionDistance);
+    }
 }

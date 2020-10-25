@@ -9,9 +9,6 @@ public class DistractedState : BaseState {
     public Shark shark;
     public BloodVial bloodVial;
 
-    [Tooltip("The state that the agent will go to next, after the distraction delay has elapsed")]
-    public BaseState postDelayState;
-
     public SharkMotorSettings motorSettings;
 
 
@@ -33,17 +30,17 @@ public class DistractedState : BaseState {
 
         // Lerp forward, if we're still sufficiently far enough away from it
         if (dirToTarget.sqrMagnitude > motorSettings.sqrStopDistance) {
-            float forwardSpeed = motorSettings.GetMotorSpeed(GetSqrDistanceToCurrentWaypoint());
+            float forwardSpeed = motorSettings.GetMotorSpeed(GetSqrDistanceToBloodVial());
             shark.rb.MovePosition(shark.transform.position + (shark.transform.forward * forwardSpeed));
         }
     }
 
     public IEnumerator StartStateAfterDelay() {
         yield return new WaitForSeconds(bloodVial.lifetime);
-        parentFSM.TransitionTo(postDelayState);
+        parentFSM.TransitionTo(shark.resetState);
     }
 
-    private float GetSqrDistanceToCurrentWaypoint() {
+    private float GetSqrDistanceToBloodVial() {
         return (bloodVial.transform.position - shark.transform.position).sqrMagnitude;
     }
 }

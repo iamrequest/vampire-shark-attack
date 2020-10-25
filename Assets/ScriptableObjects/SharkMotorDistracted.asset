@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f178e36dd5add6048af8cb7054457617, type: 3}
+  m_Name: SharkMotorDistracted
+  m_EditorClassIdentifier: 
+  sqrStopDistance: 1.5
+  sqrSlowDistance: 2
+  regularSpeed: 0.025
+  slowSpeed: 0.015
+  rotationSpeed: 5

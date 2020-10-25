@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &172220198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 172220199}
+  - component: {fileID: 172220200}
+  m_Layer: 8
+  m_Name: ChasePlayerState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &172220199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172220198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7956945933951297980}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172220200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172220198}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5befb3075dd784089a808f08c9168d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentFSM: {fileID: 0}
+  onStateEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onStateExit:
+    m_PersistentCalls:
+      m_Calls: []
+  shark: {fileID: 497487209}
+  lastSeenPosition: {x: 0, y: 0, z: 0}
+  giveUpTime: 5
+  motorSettings: {fileID: 11400000, guid: 73fadd9df0e762e4fa10c3769c1c77f0, type: 2}
 --- !u!1 &497051959
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +64,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497051960}
   - component: {fileID: 497051961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Distracted State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,9 +105,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   shark: {fileID: 497487209}
-  target: {fileID: 0}
-  postDelayState: {fileID: 7956945933219381393}
-  distractionTime: 10
+  bloodVial: {fileID: 0}
   motorSettings: {fileID: 11400000, guid: e3e9151c6ff74804d9ccf27010d548a5, type: 2}
 --- !u!136 &7956945933968390836
 CapsuleCollider:
@@ -78,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956945932939012055}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shark Wrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7956945933219381394}
   - component: {fileID: 7956945933219381393}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Patrol State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +209,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   shark: {fileID: 497487209}
-  chaseState: {fileID: 0}
+  chaseState: {fileID: 172220200}
   currentTravelPoint: {fileID: 0}
   travelPoints:
   - {fileID: 7956945933966243166}
@@ -176,7 +228,7 @@ GameObject:
   - component: {fileID: 7956945933245945000}
   - component: {fileID: 7956945933245945004}
   - component: {fileID: 497487209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +294,7 @@ MonoBehaviour:
   eyeTransform: {fileID: 7956945934216580229}
   visibleLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 257
   visionDistance: 7
   visionRadius: 22.5
 --- !u!114 &497487209
@@ -257,7 +309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb9792a16eb11043ab8c37cb9af4bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patrolState: {fileID: 7956945933219381393}
   distractedState: {fileID: 497051961}
+  resetState: {fileID: 0}
 --- !u!1 &7956945933951297981
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956945933951297980}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,6 +341,7 @@ Transform:
   m_Children:
   - {fileID: 7956945933219381394}
   - {fileID: 497051960}
+  - {fileID: 172220199}
   m_Father: {fileID: 7956945932939012055}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -299,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956945933966243166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Patrol Target 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956945934216580229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956945934330788222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Patrol Target 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,6 +442,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7956945933245945002}
     m_Modifications:
+    - target: {fileID: -9011986001789423450, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94d7ae82c2556ca409029cddc1c75467,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -457,15 +517,85 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: -8108085122129792975, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7009797857457697962, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -6511219549512425945, guid: 94d7ae82c2556ca409029cddc1c75467,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 15531d26ed7a75b419b740d46fba7ad0, type: 2}
+    - target: {fileID: -5506977543257564031, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4299077365104867289, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -600400160491486310, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -599007139245091368, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 94d7ae82c2556ca409029cddc1c75467,
         type: 3}
       propertyPath: m_Name
       value: shark mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790183945725220954, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660602332106993103, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819001077394492298, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657560127643677590, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905609870639353253, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547169208358973756, guid: 94d7ae82c2556ca409029cddc1c75467,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94d7ae82c2556ca409029cddc1c75467, type: 3}

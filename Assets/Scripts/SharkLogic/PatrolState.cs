@@ -35,7 +35,7 @@ public class PatrolState : BaseState {
         // Check for player
         if(shark.vision.IsInSight(Player.instance.transform.position, "Player")) {
             onPlayerSpotted.Invoke();
-            //parentFSM.TransitionTo(chaseState);
+            parentFSM.TransitionTo(chaseState);
         }
 
         // If 0 patrol points are specified, this is essentially just an idle state. Likely would look weird with just 0

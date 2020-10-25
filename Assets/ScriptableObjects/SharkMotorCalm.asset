@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f178e36dd5add6048af8cb7054457617, type: 3}
-  m_Name: SharkMotorChase
+  m_Name: SharkMotorCalm
   m_EditorClassIdentifier: 
-  sqrStopDistance: 1.5
+  sqrStopDistance: 1
   sqrSlowDistance: 2
-  regularSpeed: 0.025
-  slowSpeed: 0.015
+  regularSpeed: 0.01
+  slowSpeed: 0.01
   rotationSpeed: 5
