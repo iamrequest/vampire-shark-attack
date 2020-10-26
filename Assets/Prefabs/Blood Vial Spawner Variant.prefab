@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1917837714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5124440581758589057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.20620039, y: 1.0439999, z: 0.20620039}
+  m_Center: {x: 0, y: 0.52199996, z: 0}
 --- !u!114 &221249587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,6 +31,19 @@ MonoBehaviour:
     needsReinit: 0
   bloodVialPrefab: {fileID: 5253601537160864237, guid: 39a7d70b9cc37814b88eca6123ed58ae,
     type: 3}
+--- !u!65 &7184473802108954813
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5124440581917688300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15868415, y: 0.1082726, z: 0.15868415}
+  m_Center: {x: 0.0000038146973, y: 0.0541363, z: -0.0000076293945}
 --- !u!1001 &5466457759505205329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: potion_4 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
@@ -214,6 +245,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: potion_4 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
 --- !u!1001 &5466457760467789264
@@ -226,7 +262,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 558.94147
+      value: 560.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
@@ -236,7 +272,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 393.37982
+      value: 392.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
@@ -246,7 +282,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17680246
+      value: 0.2394697
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
@@ -256,7 +292,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9842464
+      value: 0.97090393
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
@@ -271,7 +307,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 20.367
+      value: 27.710001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
@@ -296,10 +332,21 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 850201e130b30ac4088c9bafa15fc6f1,
         type: 3}
       propertyPath: m_Name
-      value: Blood Vial Spawner Variant
+      value: Blood Vial Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 850201e130b30ac4088c9bafa15fc6f1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 850201e130b30ac4088c9bafa15fc6f1, type: 3}
+--- !u!1 &5124440581758589057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 850201e130b30ac4088c9bafa15fc6f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5466457760467789264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5500719387799274043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 850201e130b30ac4088c9bafa15fc6f1,
@@ -403,6 +450,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: potion_4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
 --- !u!1001 &5466457760477253972
@@ -502,6 +554,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: potion_4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
 --- !u!1001 &5466457760625458365
@@ -585,6 +642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: detailBowl
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 718c322f4a96b1845a5f372388620f5a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 718c322f4a96b1845a5f372388620f5a, type: 3}
@@ -697,6 +759,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: potion_4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
 --- !u!1001 &5466457760955246199
@@ -796,6 +863,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: potion_4 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
 --- !u!1001 &5466457760961086802
@@ -894,6 +966,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: potion_4 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d28ecfe312c8294fb8a2c9883d2ec43,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28ecfe312c8294fb8a2c9883d2ec43, type: 3}
