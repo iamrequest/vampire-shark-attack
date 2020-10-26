@@ -9,6 +9,7 @@ public class Shark : MonoBehaviour {
     public PatrolState patrolState;
     public DistractedState distractedState;
     public BaseState resetState;
+    public float resetDelay;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
@@ -51,7 +52,13 @@ public class Shark : MonoBehaviour {
         fsm.TransitionTo(distractedState);
     }
 
-    public void ResetShark() {
+    public void DoResetShark() {
+        StartCoroutine(ResetShark());
+    }
+
+    private IEnumerator ResetShark() {
+        yield return new WaitForSeconds(resetDelay);
+
         // Reset position/rotation/motion
         transform.position = originalPosition;
         transform.rotation = originalRotation;

@@ -64,11 +64,11 @@ public class ChasePlayerState : BaseState {
             onPlayerKill.Invoke();
 
             // Kill the player
-            VRPlayer.instance.SendToLastWaypoint(0f);
+            VRPlayer.instance.KillPlayer();
 
             // Restore this shark to its reset state/transform. See Shark.cs.
             // TODO: Reset all sharks?
-            shark.ResetShark();
+            shark.DoResetShark();
         }
     }
 

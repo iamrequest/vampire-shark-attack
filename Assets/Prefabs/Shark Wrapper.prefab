@@ -330,6 +330,7 @@ MonoBehaviour:
   patrolState: {fileID: 7956945933219381393}
   distractedState: {fileID: 497051961}
   resetState: {fileID: 0}
+  resetDelay: 3
 --- !u!1 &7956945933951297981
 GameObject:
   m_ObjectHideFlags: 0

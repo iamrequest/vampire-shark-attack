@@ -11,8 +11,10 @@ public class VRPlayer : MonoBehaviour {
         }
     }
 
+    public Animator deathFadeAnimator;
     public Waypoint currentWaypoint;
     private CharacterController characterController;
+    public float deathAnimationDuration;
 
     private void Awake() {
         if (_instance != null) {
@@ -26,8 +28,9 @@ public class VRPlayer : MonoBehaviour {
         characterController = GetComponent<CharacterController>();
     }
 
-    public void SendToLastWaypoint(float delay) {
-        StartCoroutine(DoSendToLastWaypoint(delay));
+    public void KillPlayer() {
+        deathFadeAnimator.SetTrigger("KillPlayer");
+        StartCoroutine(DoSendToLastWaypoint(deathAnimationDuration));
     }
 
     private IEnumerator DoSendToLastWaypoint(float delay) {
