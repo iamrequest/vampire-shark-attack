@@ -15,6 +15,7 @@ public class VRPlayer : MonoBehaviour {
     public Waypoint currentWaypoint;
     private CharacterController characterController;
     public float deathAnimationDuration;
+    private bool isDying;
 
     private void Awake() {
         if (_instance != null) {
@@ -29,12 +30,18 @@ public class VRPlayer : MonoBehaviour {
     }
 
     public void KillPlayer() {
-        deathFadeAnimator.SetTrigger("KillPlayer");
-        StartCoroutine(DoSendToLastWaypoint(deathAnimationDuration));
+        // Avoid doing onDeath tasks while the player is already being killed
+        if (!isDying) {
+            isDying = true;
+            deathFadeAnimator.SetTrigger("KillPlayer");
+            StartCoroutine(DoSendToLastWaypoint(deathAnimationDuration));
+        }
     }
 
     private IEnumerator DoSendToLastWaypoint(float delay) {
         yield return new WaitForSeconds(delay);
+
+        isDying = false;
 
         // Prevent the CC from overwriting our movement
         characterController.enabled = false;
