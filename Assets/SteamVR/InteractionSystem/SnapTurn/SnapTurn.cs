@@ -62,8 +62,9 @@ namespace Valve.VR.InteractionSystem
                 if (Time.time < (teleportLastActiveTime + canTurnEverySeconds))
                     return;
 
+                // Manually modified: Removed this section
                 // only allow snap turning when not holding something
-
+                /*
                 bool rightHandValid = player.rightHand.currentAttachedObject == null ||
                     (player.rightHand.currentAttachedObject != null
                     && player.rightHand.currentAttachedTeleportManager != null
@@ -73,6 +74,11 @@ namespace Valve.VR.InteractionSystem
                     (player.leftHand.currentAttachedObject != null
                     && player.leftHand.currentAttachedTeleportManager != null
                     && player.leftHand.currentAttachedTeleportManager.teleportAllowed);
+                */
+                
+                bool rightHandValid = true;
+                bool leftHandValid = true;
+
 
 
                 bool leftHandTurnLeft = snapLeftAction.GetStateDown(SteamVR_Input_Sources.LeftHand) && leftHandValid;
