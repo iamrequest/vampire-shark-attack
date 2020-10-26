@@ -502,7 +502,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   breakVelocity: 4
-  alertRadius: 80
+  alertRadius: 150
   lifetime: 10
   vfxLifetime: 7
   lifetimeDestroyBuffer: 1
