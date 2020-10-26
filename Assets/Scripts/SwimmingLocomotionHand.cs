@@ -24,7 +24,7 @@ public class SwimmingLocomotionHand : MonoBehaviour {
 
     public bool isLocomotionActive {
         get {
-            return isGripOpen && !isHoldingInteractable;
+            return isGripOpen;
         }
     }
 
@@ -44,16 +44,18 @@ public class SwimmingLocomotionHand : MonoBehaviour {
     }
 
     private void SetIsLocomotionActive(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
-        // If we just started a grip, check if we're holding an object
-        if (newState) {
-            isHoldingInteractable = (hand.currentAttachedObject != null);
-        } else {
-            // Check if we just released an object. If so, we need to wait a bit before producing motion
-            if (isHoldingInteractable) {
-                timeSinceLastObjectRelease = 0f;
-                return;
-            }
-        }
+        // Commented: Attempt to prevent the player from moving shortly after a throw.
+        // Couldn't get it working right, discarded. It gets in the way of BloodVialSpawner
+        //// If we just started a grip, check if we're holding an object
+        //if (newState) {
+        //    isHoldingInteractable = (hand.currentAttachedObject != null);
+        //} else {
+        //    // Check if we just released an object. If so, we need to wait a bit before producing motion
+        //    if (isHoldingInteractable) {
+        //        timeSinceLastObjectRelease = 0f;
+        //        return;
+        //    }
+        //}
 
         isGripOpen = !newState;
     }

@@ -9,7 +9,7 @@ using UnityEngine.Events;
 /// TODO: Currently this only alerts sharks at the moment the bottle breaks. It should also alert sharks while it's broken and leaking blood
 /// </summary>
 public class BloodVial : MonoBehaviour {
-    private Renderer m_renderer;
+    public Renderer renderer;
     private Rigidbody m_rb;
 
     [Tooltip("Invoked when the vial collides and breaks")]
@@ -29,8 +29,7 @@ public class BloodVial : MonoBehaviour {
     public LayerMask enemyLayerMask;
 
     private void Start() {
-        m_renderer = GetComponent<Renderer>();
-        m_rb = GetComponent<Rigidbody>();
+        m_rb = GetComponentInParent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -45,7 +44,7 @@ public class BloodVial : MonoBehaviour {
                 isBroken = true;
 
                 // Update the vial
-                m_renderer.enabled = false;
+                renderer.enabled = false;
                 m_rb.isKinematic = true;
                 transform.up = collision.GetContact(0).normal;
 
