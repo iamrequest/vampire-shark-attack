@@ -64,5 +64,5 @@ Perhaps being able to toggle swimming locomotion on/off via a button press would
     * [Low Poly Shark mesh, by pennomi](https://opengameart.org/content/low-poly-shark), licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
     * [Graveyard Kit, by Kenney](https://www.kenney.nl/assets/graveyard-kit), licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
     * [Watercraft Kit, by Kenney](https://www.kenney.nl/assets/watercraft-pack), licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
-    * [Potions and Materials, by Verex]9https://www.patreon.com/Verex), licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
+    * [Potions and Materials, by Verex](https://www.patreon.com/Verex), licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/)
    
